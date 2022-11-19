@@ -1,4 +1,5 @@
 const path = require("path")
+const webpack = require("webpack")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ESLintPlugin = require("eslint-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
@@ -16,7 +17,7 @@ module.exports = {
         historyApiFallback: true,
         compress: true,//gzip压缩
         port: 9090,
-        // hot:true,
+        hot:true,
         // open: true,
         proxy: {//反向代理,解决跨域
             "/api": {
@@ -31,8 +32,9 @@ module.exports = {
         rules: [{
             test: /\.css|scss$/,
             use: ['style-loader', 'css-loader', "postcss-loader"],//调用的loader,从左往右依次
-            // include:"",//包含目录,
-            exclude: /node_modules/ //排除目录
+            // exclude: /node_modules/, //排除目录
+            include: [path.resolve(__dirname, "src"), path.resolve(__dirname, "node_modules/antd")], // 包含目录，，提高打包速度
+           
         }, {
             test: /\.(png|jpg|gif|webp|jpeg|svg|eot|ttf|woff|woff2)$/,
             use: {
@@ -50,6 +52,7 @@ module.exports = {
             loader: "babel-loader",
             options: {
                 presets: ["@babel/preset-env", "@babel/preset-react"],
+                cacheDirectory: true,
                 plugins: [["@babel/plugin-proposal-class-properties", { "loose": true }]]
             }
         }]
@@ -65,7 +68,8 @@ module.exports = {
             removeAttributeQuotes: true,//移除属性引号
         }
     }), new CleanWebpackPlugin(),//每次打包先清空dist文件夹
-    new ESLintPlugin()
+    new ESLintPlugin(),
+    new webpack.HotModuleReplacementPlugin()//热更新
     ],
     resolve: {
         extensions: ['.js', '.jsx'],

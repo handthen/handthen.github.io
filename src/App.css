@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 .header {
     width: 200px;
     background-color: aqua;

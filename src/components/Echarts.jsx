@@ -1,6 +1,12 @@
 import React, { useEffect, useState ,useRef} from 'react';
 const Charts = require("echarts")
 const Echarts = (props = {}) => {
+    
+
+
+
+
+
     const { series = [], xData = [], option = {}, width = 400, height = 600 } = props
     let myEcharts = useRef(null)
     let Defaultoption = {

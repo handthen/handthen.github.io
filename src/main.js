@@ -1,9 +1,14 @@
 import React from "react";
 import { createRoot } from "react-dom/client"
 import App from "@/App"
+// import Home from "@/views/Home"
+import 'antd/dist/antd.css';
 import "amfe-flexible"
 
-createRoot(document.getElementById("app")).render(<App />)
+
+createRoot(document.getElementById("app")).render(
+    <App />
+)
 
 // var search = function (nums) {
 //     if (nums.length < 2) {
