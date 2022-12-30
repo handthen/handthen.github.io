@@ -9,17 +9,18 @@ module.exports ={
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+    "parser": "@babel/eslint-parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module",
     },
     "plugins": [
         "react"
     ],
     "rules":{
-        // 'no-console':"error"
+        // 'no-console':"error",//eslint规则
     }
 }

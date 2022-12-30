@@ -1,13 +1,19 @@
-import React from "react";
+import React,{StrictMode} from "react";
 import { createRoot } from "react-dom/client"
 import App from "@/App"
 // import Home from "@/views/Home"
 import 'antd/dist/antd.css';
 import "amfe-flexible"
-
+import {Provider} from "react-redux"
+import store from "./store";
 
 createRoot(document.getElementById("app")).render(
-    <App />
+    <StrictMode>
+        <Provider store={store}>
+           <App />
+        </Provider>
+    </StrictMode>
+   
 )
 
 // var search = function (nums) {
@@ -25,4 +31,5 @@ createRoot(document.getElementById("app")).render(
 //     }
 //     return [...search(leftarr),middle].concat(search(rightarr))
 // };
+
 
